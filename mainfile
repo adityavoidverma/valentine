@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Rose Day Manya ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #6b0000, #ff4d6d);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Georgia', serif;
+            color: white;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.45);
+            padding: 40px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(255, 80, 80, 0.5);
+            max-width: 430px;
+            z-index: 10;
+            animation: fadeIn 2s ease;
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            margin-bottom: 10px;
+            color: #ffd6d6;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: normal;
+            color: #ffeaea;
+            margin-bottom: 20px;
+        }
+
+        .rose-img {
+            width: 230px;
+            border-radius: 16px;
+            margin: 20px 0;
+            box-shadow: 0 0 25px rgba(255, 120, 120, 0.7);
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #fff5f5;
+        }
+
+        .from {
+            margin-top: 25px;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: #ffd6d6;
+        }
+
+        .hint {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.75);
+            animation: pulse 2s infinite;
+            z-index: 15;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Rose petals */
+        .petal {
+            position: absolute;
+            top: -10%;
+            width: 18px;
+            height: 18px;
+            background: pink;
+            border-radius: 50% 50% 50% 0;
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(120vh) rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Happy Rose Day 🌹</h1>
+        <h2>Manya</h2>
+
+        <img class="rose-img"
+             src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
+             alt="Red Rose">
+
+        <p class="message">
+            A rose is soft, but it stays.  
+            Quiet, but unforgettable.  
+            On this Rose Day, I just wanted you to know —  
+            you make the ordinary feel special.
+        </p>
+
+        <div class="from">
+            — from Void ❤️
+        </div>
+    </div>
+
+    <div class="hint">tap anywhere ♫</div>
+
+    <!-- Music -->
+    <audio id="bgMusic" loop>
+        <source src="co2.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Rose petals
+        for (let i = 0; i < 28; i++) {
+            const petal = document.createElement("div");
+            petal.className = "petal";
+            petal.style.left = Math.random() * 100 + "vw";
+            petal.style.animationDuration = 6 + Math.random() * 7 + "s";
+            petal.style.opacity = Math.random();
+            document.body.appendChild(petal);
+        }
+
+        // Click anywhere to start music (once)
+        const music = document.getElementById("bgMusic");
+        let started = false;
+
+        document.body.addEventListener("click", () => {
+            if (!started) {
+                music.volume = 0.35;
+                music.play();
+                started = true;
+
+                const hint = document.querySelector(".hint");
+                if (hint) hint.remove();
+            }
+        });
+    </script>
+
+</body>
+</html>
